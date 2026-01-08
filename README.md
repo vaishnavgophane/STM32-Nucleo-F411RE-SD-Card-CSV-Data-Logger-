@@ -5,7 +5,7 @@ Embedded Firmware & IoT Developer
 <br>
 Pune, India.
 
-📫 **Connect:** [Gmail]( mr.vaishnavgophane@gmail.com ) • [GitHub](https://github.com/vaishnavgophane) • [LinkedIn](https://www.linkedin.com/in/vaishnav-gophane-417686284/)
+📫 **Connect:** [Gmail](mailto:mr.vaishnavgophane@gmail.com) • [GitHub](https://github.com/vaishnavgophane) • [LinkedIn](https://www.linkedin.com/in/vaishnav-gophane-417686284/)
 
 ---
 
