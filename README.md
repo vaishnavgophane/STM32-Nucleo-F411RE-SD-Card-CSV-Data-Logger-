@@ -69,6 +69,7 @@ reliability, modular firmware design, and efficient memory usage.
              │  CSV    │        │ Storage  │
              └─────────┘        └──────────┘
 
+
 ### Data Logging
 - Periodic data sampling
 - Timestamp-based logging
