@@ -11,9 +11,10 @@ Pune, India.
 
 # STM32 SD Card CSV Data Logger
 
-A production-style embedded firmware project demonstrating reliable data logging
-to an SD card using **STM32**, **SPI**, and **FATFS**. The system periodically records
-sensor and system telemetry in **CSV format** for offline analysis.
+📊 Embedded Data Acquisition & Logging System (STM32F411)
+
+A professional-grade embedded data acquisition system featuring a quad-DMA architecture (SPI + ADC), real-time RTC timestamping, and CSV data export for seamless Excel analysis.
+Built on NUCLEO-F411RE using STM32CubeIDE and HAL drivers.
 
 ---
 
@@ -42,12 +43,31 @@ reliability, modular firmware design, and efficient memory usage.
 
 ## ✨ Key Features
 
-### SD Card & File System
-- SPI-based SD card communication
-- FATFS integration (diskio layer)
-- Automatic file creation and append mode
-- CSV header written only once
-- Safe file open/close operations
+| Feature                     | Implementation                        | Performance                                 |
+| --------------------------- | ------------------------------------- | ------------------------------------------- |
+| Internal Temperature Sensor | ADC1 Channel 16 + DMA (Circular Mode) | Continuous sampling with **0 CPU overhead** |
+| MicroSD Storage             | SPI1 with DMA (TX/RX streams)         | **250+ KB/s** sustained write speed         |
+| Real-Time Clock (RTC)       | RTC + LSE 32.768 kHz crystal          | Battery-backed, accurate timestamps         |
+| File System                 | FatFs v0.14 + SPI Disk I/O            | Append-mode **CSV logging**                 |
+| Debug Interface             | USART2 @ 115200 baud                  | Live telemetry & error diagnostics          |
+
+
+## 🏗️ Advanced System Architecture
+┌─────────────────────────────────────────────────────────────┐
+│                       NUCLEO-F411RE                          │
+├─────────────────┬──────────────────┬────────────────────────┤
+│    ADC1 + DMA2  │    SPI1 + DMA2   │          RTC           │
+│  CH16 Temp Sensor│  SD Card I/O    │  LSE 32.768 kHz Crystal│
+│  Circular Mode  │ TX: Stream2     │  Timestamp Generation  │
+│  0 CPU Load     │ RX: Stream0     │                        │
+│                 │ 250+ KB/s Write │                        │
+└─────────────────┼──────────────────┼────────────────────────┘
+                  │                  │
+             ┌────▼────┐        ┌────▼────┐
+             │  FatFs  │◄──────►│  SD Card │
+             │ Append  │        │  FAT32   │
+             │  CSV    │        │ Storage  │
+             └─────────┘        └──────────┘
 
 ### Data Logging
 - Periodic data sampling
