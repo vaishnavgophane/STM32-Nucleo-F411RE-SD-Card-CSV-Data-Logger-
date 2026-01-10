@@ -57,17 +57,18 @@ reliability, modular firmware design, and efficient memory usage.
 │                       NUCLEO-F411RE                          │
 ├─────────────────┬──────────────────┬────────────────────────┤
 │    ADC1 + DMA2  │    SPI1 + DMA2   │          RTC           │
-│  CH16 Temp Sensor│  SD Card I/O    │  LSE 32.768 kHz Crystal│
-│  Circular Mode  │ TX: Stream2     │  Timestamp Generation  │
-│  0 CPU Load     │ RX: Stream0     │                        │
-│                 │ 250+ KB/s Write │                        │
+│  CH16 Temp      │  SD Card I/O     │  LSE 32.768 kHz        │
+│  Circular Mode  │  TX: Stream2     │  Timestamp Generation │
+│  0 CPU Load     │  RX: Stream0     │                        │
+│                 │  250+ KB/s Write │                        │
 └─────────────────┼──────────────────┼────────────────────────┘
-                  │                  │
-             ┌────▼────┐        ┌────▼────┐
-             │  FatFs  │◄──────►│  SD Card │
-             │ Append  │        │  FAT32   │
-             │  CSV    │        │ Storage  │
-             └─────────┘        └──────────┘
+                  │
+             ┌────▼────┐        ┌───────────┐
+             │  FatFs  │◄──────►│  SD Card  │
+             │  Append │        │  FAT32    │
+             │  CSV    │        │  Storage  │
+             └─────────┘        └───────────┘
+
 
 
 ### Data Logging
